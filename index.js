@@ -9,7 +9,7 @@ async function handleRequest(request) {
   // Only rewrite root (and avoid looping if already on /projectname/)
   if (originalUrl.pathname === "/") {
     // Construct new target URL
-    const rewritten = new URL("s7aboattila.github.io")
+    const rewritten = new URL("https://s7aboattila.github.io/")
     rewritten.pathname = "/twicedotcomdotcom/"  // ensure trailing slash if GitHub expects it
     console.log("Rewriting to:", rewritten.toString())
 
