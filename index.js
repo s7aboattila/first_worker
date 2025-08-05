@@ -7,7 +7,7 @@ async function handleRequest(request) {
   console.log("Original URL:", originalUrl.href)
 
   if (originalUrl.pathname === "/") {
-    return Response.redirect("https://s7aboattila.github.io/twicedotcom.com", 302)
+    return Response.redirect("https://s7aboattila.github.io/twicedotcomdotcom", 302)
   }
 
   // Pass through everything else unchanged
