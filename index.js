@@ -10,7 +10,7 @@ async function handleRequest(request) {
   if (originalUrl.pathname === "/") {
     // Construct new target URL
     const rewritten = new URL(request.url)
-    rewritten.pathname = "/projectname/"  // ensure trailing slash if GitHub expects it
+    rewritten.pathname = "/twicedotcomdotcom/"  // ensure trailing slash if GitHub expects it
     console.log("Rewriting to:", rewritten.toString())
 
     // Preserve original request's method, headers, body, etc.
