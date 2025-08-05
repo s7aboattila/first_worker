@@ -7,7 +7,7 @@ async function handleRequest(request) {
 
   // Rewrite "/" to "/my-subdir/"
   if (url.pathname === "/") {
-    url.pathname = "/my-subdir/"
+    url.pathname = "/twicedotcomdotcom/"
     return fetch(url.toString(), request)
   }
 
