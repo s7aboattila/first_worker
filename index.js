@@ -8,10 +8,9 @@ async function handleRequest(request) {
 
   // Debug: Send response for root path
   if (url.pathname === "/") {
-    return new Response(`✅ Worker active!\nRewriting to: /projectname\nOriginal URL: ${url.href}`, {
-      status: 200,
-      headers: { "Content-Type": "text/plain" }
-    })
+    url.pathname = "/twicedotcomdotcom/"
+    console.log("New URL:", url.toString())
+    return fetch(url.toString(), request)
   }
 
   // Optional: Pass through other requests
