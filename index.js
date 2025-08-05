@@ -3,16 +3,30 @@ addEventListener("fetch", event => {
 })
 
 async function handleRequest(request) {
-  const url = new URL(request.url)
-  console.log("Original URL:", url.href)
+  const originalUrl = new URL(request.url)
+  console.log("Original URL:", originalUrl.href)
 
-  // Debug: Send response for root path
-  if (url.pathname === "/") {
-    url.pathname = "/twicedotcomdotcom/"
-    console.log("New URL:", url.toString())
-    return fetch(url.toString(), request)
+  // Only rewrite root (and avoid looping if already on /projectname/)
+  if (originalUrl.pathname === "/") {
+    // Construct new target URL
+    const rewritten = new URL(request.url)
+    rewritten.pathname = "/projectname/"  // ensure trailing slash if GitHub expects it
+    console.log("Rewriting to:", rewritten.toString())
+
+    // Preserve original request's method, headers, body, etc.
+    const newRequest = new Request(rewritten.toString(), {
+      method: request.method,
+      headers: request.headers,
+      body: request.body,
+      redirect: "follow",
+    })
+
+    // Optional: you can add a debug header to see it downstream
+    // newRequest.headers.set("X-Worker-Rewritten", "true")
+
+    return fetch(newRequest)
   }
 
-  // Optional: Pass through other requests
+  // Pass through everything else unchanged
   return fetch(request)
 }
